@@ -8,6 +8,7 @@ type ThemeStyles = {
 	text: string;
 	border: string;
 	button: string;
+	placeholder: string;
 };
 
 type ThemeContextType = {
@@ -27,6 +28,7 @@ const themes = {
 		text: "text-gray-900",
 		border: "border-gray-300",
 		button: "bg-blue-600 text-white",
+		placeholder: "placeholder:text-gray-400",
 	},
 
 	dark: {
@@ -35,6 +37,7 @@ const themes = {
 		text: "text-white",
 		border: "border-gray-700",
 		button: "bg-blue-500 text-white",
+		placeholder: "placeholder:text-gray-400",
 	},
 };
 

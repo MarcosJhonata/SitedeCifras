@@ -11,7 +11,7 @@ export default function SongForm() {
         flex-wrap
         gap-5
         justify-between
-        ${themeStyles.card}`}
+       `}
 		>
 			<h2 className="w-full text-left text-xl font-bold">
 				ADICIONAR NOVA MUSICA
@@ -20,7 +20,7 @@ export default function SongForm() {
 				<label htmlFor="musicas">Nome da Musica</label>
 				<input
 					id="musicas"
-					className="
+					className={`
             h-11
             w-70
             px-3
@@ -29,7 +29,8 @@ export default function SongForm() {
             border-gray-300
             outline-none
             focus:border-blue-600
-          "
+             ${themeStyles.card}
+            `}
 					type="text"
 					placeholder="Digite o nome da musica"
 				/>
@@ -38,7 +39,7 @@ export default function SongForm() {
 				<label htmlFor="cifras">Nome da Musica</label>
 				<input
 					id="cifras"
-					className="
+					className={`
             h-11
             w-70
             px-3
@@ -47,7 +48,8 @@ export default function SongForm() {
             border-gray-300
             outline-none
             focus:border-blue-600
-          "
+            ${themeStyles.placeholder}
+          `}
 					type="text"
 					placeholder="Digite os acordes"
 				/>
@@ -64,7 +66,7 @@ export default function SongForm() {
           transition
           ${themeStyles.button}`}
 				>
-					Cadastrar  musica
+					Cadastrar musica
 				</button>
 			</div>
 		</form>
