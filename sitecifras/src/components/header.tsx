@@ -15,6 +15,7 @@ export default function Header() {
     border
     rounded-xl
     shadow-lg
+    gap-8
     ${themeStyles.card}
     ${themeStyles.border}
     ${themeStyles.text}`}
