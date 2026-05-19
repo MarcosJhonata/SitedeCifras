@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTheme } from "../context/use-theme";
-import Container from "./container";
 
 type Song = {
 	id: number;
@@ -33,8 +32,7 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 	}
 
 	return (
-		<Container
-			as="form"
+		<form
 			onSubmit={handleSubmit}
 			className={`w-full
 			min-h-25
@@ -117,6 +115,6 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 					Cadastrar musica
 				</button>
 			</div>
-		</Container>
+		</form>
 	);
 }

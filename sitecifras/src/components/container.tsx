@@ -1,16 +1,14 @@
 import React from "react";
 
-type ContainerProps<T extends keyof React.JSX.IntrinsicElements> = {
-	as?: T;
-} & React.ComponentPropsWithoutRef<T>;
+interface ContainerProps extends React.ComponentProps<"div"> {
+	as?: keyof React.JSX.IntrinsicElements;
+}
 
-export default function Container<T extends keyof React.JSX.IntrinsicElements = "div">({
-	as,
+export default function Container({
+	as = "div",
 	children,
 	className,
 	...props
-}: ContainerProps<T>) {
-	const Component = as ?? "div";
-
-	return React.createElement(Component, { ...props, className }, children);
+}: ContainerProps) {
+	return React.createElement(as, { ...props, className }, children);
 }

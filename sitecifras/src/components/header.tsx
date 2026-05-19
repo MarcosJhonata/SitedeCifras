@@ -3,7 +3,6 @@ import Container from "./container";
 export default function Header() {
 	const { theme, toggleTheme, themeStyles } = useTheme();
 	return (
-        
 		<Container
 			as="header"
 			className={`w-full
@@ -20,7 +19,7 @@ export default function Header() {
     ${themeStyles.border}
     ${themeStyles.text}`}
 		>
-			BIBLIOTECA DE CIFRAS E ACORDES
+			<h1 className="text-2xl font-bold">BIBLIOTECA DE CIFRAS E ACORDES</h1>
 			<button
 				type="button"
 				onClick={toggleTheme}
