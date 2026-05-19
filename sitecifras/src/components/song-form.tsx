@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../context/use-theme";
+import Container from "./container";
 
 type Song = {
 	id: number;
@@ -32,57 +33,69 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 	}
 
 	return (
-		<form
+		<Container
+			as="form"
 			onSubmit={handleSubmit}
 			className={`w-full
-        p-6
-        rounded-xl
-        border
-        flex
-        flex-wrap
-        gap-5
-        justify-between
-       `}
+			min-h-25
+			flex
+			flex-wrap
+			items-end
+			justify-between
+			gap-5
+			px-6
+			py-5
+			border
+			rounded-xl
+			shadow-lg
+			${themeStyles.card}
+			${themeStyles.border}
+			${themeStyles.text}`}
 		>
 			<h2 className="w-full text-left text-xl font-bold">
 				ADICIONAR NOVA MUSICA
 			</h2>
-			<div className="flex flex-col gap-2">
-				<label htmlFor="musicas">Nome da Musica</label>
+			<div className="flex min-w-70 flex-1 flex-col gap-2">
+				<label htmlFor="musicas" className="font-semibold">
+					Nome da Musica
+				</label>
 				<input
 					value={nomeMusica}
 					onChange={(e) => setNomeMusica(e.target.value)}
 					id="musicas"
 					className={`
             h-11
-            w-70
+            w-full
             px-3
             rounded-lg
             border
-            border-gray-300
             outline-none
             focus:border-blue-600
-             ${themeStyles.card}
+            ${themeStyles.card}
+            ${themeStyles.border}
             `}
 					type="text"
 					placeholder="Digite o nome da musica"
 				/>
 			</div>
-			<div className="flex flex-col gap-2">
-				<label htmlFor="cifras">Acordes</label>
+			<div className="flex min-w-70 flex-1 flex-col gap-2">
+				<label htmlFor="cifras" className="font-semibold">
+					Acordes
+				</label>
 				<input
 					value={acordes}
 					onChange={(e) => setAcordes(e.target.value)}
 					id="cifras"
 					className={`
             h-11
-            w-70
+            w-full
             px-3
             rounded-lg
             border
-            border-gray-300
             outline-none
             focus:border-blue-600
+            ${themeStyles.card}
+            ${themeStyles.border}
             ${themeStyles.placeholder}
           `}
 					type="text"
@@ -104,6 +117,6 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 					Cadastrar musica
 				</button>
 			</div>
-		</form>
+		</Container>
 	);
 }
