@@ -1,4 +1,4 @@
-import { useTheme } from "../context/theme-context";
+import { useTheme } from "../context/use-theme";
 import Container from "./container";
 export default function Header() {
 	const { theme, toggleTheme, themeStyles } = useTheme();

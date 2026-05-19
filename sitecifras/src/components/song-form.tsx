@@ -1,8 +1,39 @@
-import { useTheme } from "../context/theme-context";
-export default function SongForm() {
+import { useState } from "react";
+import { useTheme } from "../context/use-theme";
+
+type Song = {
+	id: number;
+	musica: string;
+	acordes: string[];
+};
+
+type SongFormProps = {
+	adicionarMusica: (novaMusica: Song) => void;
+};
+
+export default function SongForm({ adicionarMusica }: SongFormProps) {
 	const { themeStyles } = useTheme();
+	const [nomeMusica, setNomeMusica] = useState("");
+	const [acordes, setAcordes] = useState("");
+
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+
+		const novaMusica = {
+			id: Date.now(),
+			musica: nomeMusica,
+			acordes: acordes.split(",").map((acorde) => acorde.trim()),
+		};
+
+		adicionarMusica(novaMusica);
+
+		setNomeMusica("");
+		setAcordes("");
+	}
+
 	return (
 		<form
+			onSubmit={handleSubmit}
 			className={`w-full
         p-6
         rounded-xl
@@ -19,6 +50,8 @@ export default function SongForm() {
 			<div className="flex flex-col gap-2">
 				<label htmlFor="musicas">Nome da Musica</label>
 				<input
+					value={nomeMusica}
+					onChange={(e) => setNomeMusica(e.target.value)}
 					id="musicas"
 					className={`
             h-11
@@ -36,8 +69,10 @@ export default function SongForm() {
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
-				<label htmlFor="cifras">Nome da Musica</label>
+				<label htmlFor="cifras">Acordes</label>
 				<input
+					value={acordes}
+					onChange={(e) => setAcordes(e.target.value)}
 					id="cifras"
 					className={`
             h-11
@@ -51,12 +86,12 @@ export default function SongForm() {
             ${themeStyles.placeholder}
           `}
 					type="text"
-					placeholder="Digite os acordes"
+					placeholder="G, A, D, F"
 				/>
 			</div>
 			<div className="flex w-full justify-center">
 				<button
-					type="button"
+					type="submit"
 					className={`
           h-11
           px-5

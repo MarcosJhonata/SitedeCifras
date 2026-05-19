@@ -1,21 +1,7 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { ThemeContext, type ThemeStyles } from "./theme";
 
 type Theme = "light" | "dark";
-
-type ThemeStyles = {
-	background: string;
-	card: string;
-	text: string;
-	border: string;
-	button: string;
-	placeholder: string;
-};
-
-type ThemeContextType = {
-	theme: Theme;
-	themeStyles: ThemeStyles;
-	toggleTheme: () => void;
-};
 
 type ThemeProviderProps = {
 	children: ReactNode;
@@ -39,9 +25,7 @@ const themes = {
 		button: "bg-blue-500 text-white",
 		placeholder: "placeholder:text-gray-400",
 	},
-};
-
-const ThemeContext = createContext<ThemeContextType | null>(null);
+} satisfies Record<Theme, ThemeStyles>;
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
 	const [theme, setTheme] = useState<Theme>("light");
@@ -61,14 +45,4 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 			{children}
 		</ThemeContext.Provider>
 	);
-}
-
-export function useTheme() {
-	const context = useContext(ThemeContext);
-
-	if (!context) {
-		throw new Error("useTheme precisa estar dentro do ThemeProvider");
-	}
-
-	return context;
 }
