@@ -15,17 +15,18 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 	const { themeStyles } = useTheme();
 	const [nomeMusica, setNomeMusica] = useState("");
 	const [acordes, setAcordes] = useState("");
+	const [erro, setErro] = useState("");
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
 		if (nomeMusica.trim() === "") {
-			alert("Digite a musica");
+			setErro("Digite o nome da musica");
 			return;
 		}
 
 		if (acordes.trim() === "") {
-			alert("Digite o acorde");
+			setErro("Digite os acordes");
 			return;
 		}
 
@@ -39,6 +40,7 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 
 		setNomeMusica("");
 		setAcordes("");
+		setErro("");
 	}
 
 	return (
@@ -110,7 +112,7 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 					placeholder="G, A, D, F"
 				/>
 			</div>
-			<div className="flex w-full justify-center">
+			<div className="flex w-full justify-center gap-4">
 				<button
 					type="submit"
 					className={`
@@ -124,6 +126,9 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 				>
 					Cadastrar musica
 				</button>
+				{erro && (
+					<p className="text-red-500 font-bold flex justify-center items-center">{erro}</p>
+				)}
 			</div>
 		</form>
 	);
