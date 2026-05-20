@@ -122,7 +122,9 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 					Cadastrar musica
 				</button>
 				{erro && (
-					<p className="text-red-500 font-bold flex justify-center items-center">
+					<p
+						className={`${themeStyles.text} font-bold flex justify-center items-center`}
+					>
 						{erro}
 					</p>
 				)}
