@@ -13,10 +13,23 @@ type SongListProps = {
 export default function SongStats({ listaMusicas }: SongListProps) {
 	const { themeStyles } = useTheme();
 	const totalMusicas = listaMusicas.length;
-	const totalAcordes = listaMusicas.reduce(
-		(total, musica) => total + musica.acordes.length,
-		0,
-	);
+
+	function retornarNotasFiltradas() {
+		const notas: string[] = [];
+
+		for (const musica of listaMusicas) {
+			for (const acorde of musica.acordes) {
+				if (acorde !== "" && !notas.includes(acorde)) {
+					notas.push(acorde);
+				}
+			}
+		}
+
+		return notas;
+	}
+
+	const notasFiltradas = retornarNotasFiltradas();
+	const totalAcordes = notasFiltradas.length;
 
 	return (
 		<Container

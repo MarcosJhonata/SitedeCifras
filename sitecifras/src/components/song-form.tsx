@@ -19,6 +19,16 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
+		if (nomeMusica.trim() === "") {
+			alert("Digite a musica");
+			return;
+		}
+
+		if (acordes.trim() === "") {
+			alert("Digite o acorde");
+			return;
+		}
+
 		const novaMusica = {
 			id: Date.now(),
 			musica: nomeMusica,
