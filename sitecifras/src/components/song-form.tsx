@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../context/use-theme";
-
-type Song = {
-	id: number;
-	musica: string;
-	acordes: string[];
-};
+import type { Song } from "../types/song";
 
 type SongFormProps = {
 	adicionarMusica: (novaMusica: Song) => void;
@@ -85,7 +80,7 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
             ${themeStyles.border}
             `}
 					type="text"
-					placeholder="Digite o nome da musica"
+					placeholder="Ex: É Ele - Drops"
 				/>
 			</div>
 			<div className="flex min-w-70 flex-1 flex-col gap-2">
@@ -127,7 +122,9 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 					Cadastrar musica
 				</button>
 				{erro && (
-					<p className="text-red-500 font-bold flex justify-center items-center">{erro}</p>
+					<p className="text-red-500 font-bold flex justify-center items-center">
+						{erro}
+					</p>
 				)}
 			</div>
 		</form>

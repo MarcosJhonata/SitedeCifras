@@ -1,11 +1,6 @@
 import Container from "./container";
 import { useTheme } from "../context/use-theme";
-
-type Song = {
-	id: number;
-	musica: string;
-	acordes: string[];
-};
+import type { Song } from "../types/song";
 
 type SongListProps = {
 	listaMusicas: Song[];
