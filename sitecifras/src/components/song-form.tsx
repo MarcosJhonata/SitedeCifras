@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "../context/use-theme";
 import type { Song } from "../types/song";
 
@@ -11,6 +11,11 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 	const [nomeMusica, setNomeMusica] = useState("");
 	const [acordes, setAcordes] = useState("");
 	const [erro, setErro] = useState("");
+	const nomeMusicaRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		nomeMusicaRef.current?.focus();
+	}, []);
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -65,6 +70,7 @@ export default function SongForm({ adicionarMusica }: SongFormProps) {
 					Nome da Musica
 				</label>
 				<input
+					ref={nomeMusicaRef}
 					value={nomeMusica}
 					onChange={(e) => setNomeMusica(e.target.value)}
 					id="musicas"

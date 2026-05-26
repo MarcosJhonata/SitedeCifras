@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import { ThemeContext, type ThemeStyles } from "./theme";
 
 type Theme = "light" | "dark";
@@ -30,9 +30,9 @@ const themes = {
 export function ThemeProvider({ children }: ThemeProviderProps) {
 	const [theme, setTheme] = useState<Theme>("light");
 
-	function toggleTheme() {
+	const toggleTheme = useCallback(function toggleTheme() {
 		setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
-	}
+	}, []);
 
 	return (
 		<ThemeContext.Provider

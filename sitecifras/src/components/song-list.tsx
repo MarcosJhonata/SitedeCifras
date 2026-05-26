@@ -1,12 +1,14 @@
 import Container from "./container";
 import { useTheme } from "../context/use-theme";
 import type { Song } from "../types/song";
+import SongCard from "./song-card";
 
 type SongListProps = {
 	listaMusicas: Song[];
+	removerMusica: (id: number) => void;
 };
 
-export default function SongList({ listaMusicas }: SongListProps) {
+export default function SongList({ listaMusicas, removerMusica }: SongListProps) {
 	const { themeStyles } = useTheme();
 	return (
 		<Container
@@ -27,20 +29,11 @@ export default function SongList({ listaMusicas }: SongListProps) {
 		>
 			<ul className="flex flex-col gap-5 px-2 py-3">
 				{listaMusicas.map((musica) => (
-					<li key={musica.id} className="flex flex-col gap-1">
-						<strong>{musica.musica}</strong>
-						<div className="flex flex-wrap items-center gap-3">
-							<span className="font-semibold">Acordes:</span>
-							{musica.acordes.map((acorde) => (
-								<span
-									key={`${musica.id}-${acorde}`}
-									className="min-w-11 rounded-full bg-blue-100 px-3 py-1 text-center font-bold text-blue-600"
-								>
-									{acorde}
-								</span>
-							))}
-						</div>
-					</li>
+					<SongCard
+						key={musica.id}
+						musica={musica}
+						removerMusica={removerMusica}
+					/>
 				))}
 			</ul>
 		</Container>
