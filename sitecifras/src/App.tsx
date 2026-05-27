@@ -42,9 +42,9 @@ export default function App() {
 		>
 			<Container
 				className={`max-w-225 mx-auto
-          flex 
-          flex-col
-          gap-5
+					flex 
+					flex-col
+					gap-5
 					p-8
 					rounded-2xl
 					shadow-lg
